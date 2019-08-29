@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8d5d219e0922649ebad407ab0e56b446
+guid: 721158518c8b6dd488c4de2b804ab0b1
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -71,7 +71,7 @@ ModelImporter:
     hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 0
-    normalImportMode: 0
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1

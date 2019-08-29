@@ -29,9 +29,17 @@
 		{
 			half rim = 1 - saturate(dot(IN.viewDir, o.Normal));
 			rim = pow(rim,_RimPower);
-			o.Emission = frac(IN.worldPos.y * 20 ) > _Stripe ? float3(0,1,0) * rim : float3(0,0,1) * rim;
 			o.Albedo = tex2D(_Diffuse,IN.uv_Diffuse);
-			// o.Emission = IN.worldPos.y > 1 ? float3(0,1,0) : float3(0,0,1);
+			
+			//float3 asd = clamp(sin(_Time * 2),0,1);
+
+			o.Emission.r = _RimColor.r * pow(rim, _RimPower) * clamp(cos(_Time * 40),0.5,1);
+			o.Emission.g = _RimColor.g * pow(rim, _RimPower) * clamp(cos(_Time * 40),0.5,1);
+			o.Emission.b = _RimColor.b * pow(rim, _RimPower) * clamp(cos(_Time * 40),0.5,1);
+			//o.Emission.rgb = _RimColor.rgb * pow(rim, _RimPower) * asd;
+			//o.Emission = frac(IN.worldPos.y * 10) > _Stripe ? _RimColor.rgb * pow(rim,_RimPower) : (1 -_RimColor.rgb) * pow(rim,_RimPower) ;
+			//o.Emission = frac(IN.worldPos.y * 20 ) > _Stripe ? float3(0,1,0) * rim : float3(0,0,1) * rim;
+			//o.Emission = IN.worldPos.y > 1 ? float3(0,1,0) : float3(0,0,1);
 			//o.Emission += (rim > 0.6 ? float3(1,0,0) : rim > 0.3 ? float3(0,1,0) : rim > 0.1 ? float3(0,0,1) : 0);   
 			//o.Emission += _RimColor.rgb *pow(rim,_RimPower);
 		}
