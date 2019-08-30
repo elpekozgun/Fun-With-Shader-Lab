@@ -10,7 +10,7 @@ Shader "Ozgun/CustomToonRamp"
     subshader
     {
         Tags {"Queue" = "Geometry"}
-
+        
         // Lighting + <same name after surf "CustomBlinnPhong">
         CGPROGRAM
         #pragma surface surf ToonRamp
