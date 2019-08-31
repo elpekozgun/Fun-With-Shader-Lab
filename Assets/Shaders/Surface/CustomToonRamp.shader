@@ -1,4 +1,4 @@
-Shader "Ozgun/CustomToonRamp"
+Shader "Ozgun/Surface/CustomToonRamp"
 {
     Properties
     {

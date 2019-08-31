@@ -1,4 +1,4 @@
-﻿Shader "Ozgun/RimLighting"
+﻿Shader "Ozgun/Surface/RimLighting"
 {
 	Properties
 	{

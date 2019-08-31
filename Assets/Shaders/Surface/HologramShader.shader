@@ -1,4 +1,4 @@
-﻿Shader "Ozgun/Hologram"
+﻿Shader "Ozgun/Surface/Hologram"
 {
 	Properties
 	{

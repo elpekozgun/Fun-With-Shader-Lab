@@ -1,4 +1,4 @@
-﻿Shader "Ozgun/SimpleAlphaTest"
+﻿Shader "Ozgun/Surface/SimpleAlphaTest"
 {
 	Properties
 	{

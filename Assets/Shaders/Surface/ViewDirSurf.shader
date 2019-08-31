@@ -1,4 +1,4 @@
-﻿Shader "Ozgun/ViewDirShader"
+﻿Shader "Ozgun/Surface/ViewDirShader"
 {
 	SubShader
 	{

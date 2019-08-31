@@ -1,4 +1,4 @@
-﻿Shader "Ozgun/SimpleTextureBlend"
+﻿Shader "Ozgun/Surface/SimpleTextureBlend"
 {
 	Properties
 	{

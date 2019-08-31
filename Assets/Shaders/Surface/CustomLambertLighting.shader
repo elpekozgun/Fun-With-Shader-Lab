@@ -1,4 +1,4 @@
-Shader "Ozgun/CustomLambert"
+Shader "Ozgun/Surface/CustomLambert"
 {
     Properties
     {

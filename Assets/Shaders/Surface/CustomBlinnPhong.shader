@@ -1,4 +1,4 @@
-Shader "Ozgun/CustomBlinnPhong"
+Shader "Ozgun/Surface/CustomBlinnPhong"
 {
     Properties
     {

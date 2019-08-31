@@ -1,4 +1,4 @@
-Shader "Ozgun/PbrMetallic"
+Shader "Ozgun/Surface/PbrMetallic"
 {
     Properties
     {

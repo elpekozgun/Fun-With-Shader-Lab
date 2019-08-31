@@ -1,4 +1,4 @@
-﻿Shader "Ozgun/ReflectionWithNormal"
+﻿Shader "Ozgun/Surface/ReflectionWithNormal"
 {
 	Properties
 	{

@@ -1,4 +1,4 @@
-﻿Shader "Ozgun/Transparent"
+﻿Shader "Ozgun/Surface/Transparent"
 {
 	Properties
 	{

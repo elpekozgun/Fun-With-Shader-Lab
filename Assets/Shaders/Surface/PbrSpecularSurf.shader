@@ -1,4 +1,4 @@
-Shader "Ozgun/PbrSpecular"
+Shader "Ozgun/Surface/PbrSpecular"
 {
     Properties
     {
