@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SimpleTexture
-  m_Shader: {fileID: 4800000, guid: 5c29f3d0585704c4098af7cf29648713, type: 3}
+  m_Name: OutlineBorderlands
+  m_Shader: {fileID: 4800000, guid: f0646672625912742aa712bbf818e3be, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -81,10 +81,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Texture:
         m_Texture: {fileID: 2800000, guid: 0479f06784de49d47a188fd3d21c6e17, type: 3}
-        m_Scale: {x: 4, y: 5}
-        m_Offset: {x: 0, y: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 1}
     m_Floats:
     - _BumpScale: 1
+    - _Compare1: 8
+    - _Compare2: 8
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -96,9 +98,13 @@ Material:
     - _Mode: 0
     - _NormalSlider: 1
     - _OcclusionStrength: 1
+    - _Outline: 0.005
+    - _OutlineThickness: 0.139
     - _Parallax: 0.02
-    - _ScaleUVx: 0.41
+    - _SPass: 2
+    - _ScaleUVx: 1
     - _ScaleUVy: 1
+    - _Selected: 0
     - _SmoothnessTextureChannel: 0
     - _Specular: 0.302
     - _SpecularHighlights: 1
@@ -109,4 +115,5 @@ Material:
     - _AlbedoColor: {r: 0.1, g: 0.4, b: 0.7, a: 1}
     - _Color: {r: 1, g: 0.30865982, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}

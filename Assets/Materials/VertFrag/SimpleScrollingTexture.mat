@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SimpleTexture
-  m_Shader: {fileID: 4800000, guid: 5c29f3d0585704c4098af7cf29648713, type: 3}
+  m_Name: SimpleScrollingTexture
+  m_Shader: {fileID: 4800000, guid: 982890051381cc84b8d9be07ee6533cb, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -43,9 +43,13 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 47a8c0a124e505947bd8a7bc384af8f3, type: 3}
+    - _FoamTex:
+        m_Texture: {fileID: 2800000, guid: 3b39b4d067fc30545beef3d06ef8d2d5, type: 3}
         m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 16c4e18accacd4647bed3f29007fee65, type: 3}
+        m_Scale: {x: 5, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetalTex:
         m_Texture: {fileID: 2800000, guid: da4e4e7f56333644999cc2db4f95ba4c, type: 3}
@@ -84,10 +88,12 @@ Material:
         m_Scale: {x: 4, y: 5}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Amplitude: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Freq: 0
     - _Gloss: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 0
@@ -99,9 +105,15 @@ Material:
     - _Parallax: 0.02
     - _ScaleUVx: 0.41
     - _ScaleUVy: 1
+    - _Slider: 0
+    - _SliderX: 0.07
+    - _SliderY: -0.03
     - _SmoothnessTextureChannel: 0
     - _Specular: 0.302
     - _SpecularHighlights: 1
+    - _Speed: 0
+    - _SpeedX: 5
+    - _SpeedY: -1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
@@ -110,3 +122,4 @@ Material:
     - _Color: {r: 1, g: 0.30865982, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Tint: {r: 1, g: 1, b: 1, a: 1}

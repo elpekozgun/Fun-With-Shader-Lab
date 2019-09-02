@@ -48,6 +48,12 @@
             float _ScaleUVx;
             float _ScaleUVy;
 
+#if UNITY_UV_STARTS_AT_TOP
+			float scale = -1.0;
+#else
+			float scale = 1.0;
+#endif
+
             // Take vertex shdaer input, and make fragment shader input(or vertex shader output)
             v2f vert (appdata v)
             {
@@ -55,7 +61,7 @@
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _GrabTexture);
 				o.uv.x = sin(o.uv.x * _ScaleUVx);
-				o.uv.y = cos(o.uv.y * _ScaleUVy);// *_SinTime;
+				o.uv.y = cos(o.uv.y * _ScaleUVy) ;// *_SinTime;
 
                 return o;
             }
