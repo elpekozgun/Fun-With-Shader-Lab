@@ -1,4 +1,5 @@
-﻿Shader "Ozgun/VertFrag/RainRipple"
+﻿
+Shader "Ozgun/VertFrag/RainRipple"
 {
 	Properties
 	{
@@ -8,14 +9,7 @@
 		//_Amp("Amplitude", float) = 1
 		_Freq("Frequency", float) = 0.01
 		_Speed("Speed", float) = 1
-		_WaveAmplitude1("W1", float) = 0
-		_WaveAmplitude2("W2", float) = 0
-		_WaveAmplitude3("W3", float) = 0
-		_WaveAmplitude4("W4", float) = 0
-		_WaveAmplitude5("W5", float) = 0
-		_WaveAmplitude6("W6", float) = 0
-		_WaveAmplitude7("W7", float) = 0
-		_WaveAmplitude8("W8", float) = 0
+		/*[HideInInspector]*/_WaveAmplitude("Wave Amp", float) = 0
 	}
 
 	SubShader
@@ -23,19 +17,25 @@
 		Tags { "Queue" = "Transparent" }
 		LOD 100
 		ZWrite on
+		Blend dstAlpha OneMinusSrcAlpha
 		//Cull off
 
 		CGPROGRAM
 		#pragma surface surf Lambert vertex:vert
+		#pragma target 4.0
 
 		sampler2D _MainTex;
 		sampler2D _NormalTex;
 		half4 _Color;
-		float _Amp;
-		float _Speed;
+		//float _Amp;
 		float _Freq;
-		float _WaveAmplitude1, _WaveAmplitude2, _WaveAmplitude3, _WaveAmplitude4, _WaveAmplitude5, _WaveAmplitude6, _WaveAmplitude7, _WaveAmplitude8;
-		float _OffsetX1, _OffsetZ1, _OffsetX2, _OffsetZ2, _OffsetX3, _OffsetZ3, _OffsetX4, _OffsetZ4, _OffsetX5, _OffsetZ5, _OffsetX6, _OffsetZ6, _OffsetX7, _OffsetZ7, _OffsetX8, _OffsetZ8;
+		float _Speed;
+		float _WaveAmplitude;
+		
+		float2 _Offset;
+		float2 _Impact;
+		float _Distance;
+
 
 		struct Input
 		{
@@ -53,56 +53,41 @@
 			float4 texcoord2: TEXCOORD2;
 		};
 
+		//Single ripple. Not sufficient. When second ripple drops first one cancels.
 
-		#define MAX_COUNT 3
-		#define PI 3.14159
-
-		void vert(inout appdata v)
+		void vert(inout appdata v, out Input o)
 		{
-			half offsetVertX = v.vertex.x;
-			half offsetVertZ = v.vertex.y;
+			UNITY_INITIALIZE_OUTPUT(Input, o);
 
-			half offset = sqrt(v.vertex.x * v.vertex.x + v.vertex.z * v.vertex.z);
-			//half value = sin(_Time.w * _Speed - offset * _Freq) * _Amp;
-			//v.vertex.y += value;
-			//v.normal.z += value;
+			// Circular Offset.
+			half offsetVertical = sqrt(v.vertex.x * v.vertex.x + v.vertex.z * v.vertex.z);
+			half value0 = sin(_Time.w * 0.1 * _Speed - v.vertex.x * _Freq - v.vertex.z * _Freq) * 0.2;
+			v.vertex.y += value0;
+			v.normal.z += value0;
 
-			half value1 = sin(_Time.w * _Speed  - offset * _Freq + v.vertex.x * _OffsetX1 + v.vertex.z * _OffsetZ1);
-			half value2 = sin(_Time.w * _Speed - offset * _Freq + v.vertex.x * _OffsetX2 + v.vertex.z * _OffsetZ2);
-			half value3 = sin(_Time.w * _Speed - offset * _Freq + v.vertex.x * _OffsetX3 + v.vertex.z * _OffsetZ3);
-			half value4 = sin(_Time.w * _Speed - offset * _Freq + v.vertex.x * _OffsetX4 + v.vertex.z * _OffsetZ4);
-			half value5 = sin(_Time.w * _Speed - offset * _Freq + v.vertex.x * _OffsetX5 + v.vertex.z * _OffsetZ5);
-			half value6 = sin(_Time.w * _Speed - offset * _Freq + v.vertex.x * _OffsetX6 + v.vertex.z * _OffsetZ6);
-			half value7 = sin(_Time.w * _Speed - offset * _Freq + v.vertex.x * _OffsetX7 + v.vertex.z * _OffsetZ7);
-			half value8 = sin(_Time.w * _Speed - offset * _Freq + v.vertex.x * _OffsetX8 + v.vertex.z * _OffsetZ8);
+			half value = sin(_Time.w * _Speed * _Freq + offsetVertical + v.vertex.x * _Offset.x + v.vertex.z * _Offset.y);
 			
-			v.vertex.y += value1 * _WaveAmplitude1;
-			v.normal.z += value1 * _WaveAmplitude1;
-			v.vertex.y += value2 * _WaveAmplitude2;
-			v.normal.z += value2 * _WaveAmplitude2;
-			v.vertex.y += value3 * _WaveAmplitude3;
-			v.normal.z += value3 * _WaveAmplitude3;
-			v.vertex.y += value4 * _WaveAmplitude4;
-			v.normal.z += value4 * _WaveAmplitude4;
-			v.vertex.y += value5 * _WaveAmplitude5;
-			v.normal.z += value5 * _WaveAmplitude5;
-			v.vertex.y += value6 * _WaveAmplitude6;
-			v.normal.z += value6 * _WaveAmplitude6;
-			v.vertex.y += value7 * _WaveAmplitude7;
-			v.normal.z += value7 * _WaveAmplitude7;
-			v.vertex.y += value8 * _WaveAmplitude8;
-			v.normal.z += value8 * _WaveAmplitude8;
+			float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+
+			float a = worldPos.x - _Impact.x;
+			float b = worldPos.z - _Impact.y;
+
+			if (sqrt(a * a + b * b) < _Distance)
+			{
+				v.vertex.y += value * _WaveAmplitude;
+				v.normal.z += value * _WaveAmplitude;
+			}
 
 		}
 
-
 		void surf(Input IN, inout SurfaceOutput o )
 		{
-			o.Emission = _Color;
-			o.Normal = UnpackNormal(tex2D(_NormalTex, IN.uv_NormalTex));
+			o.Normal = UnpackNormal(tex2D(_NormalTex, IN.uv_NormalTex)).rgb;
 			o.Normal *= float3(3, 3, 3);
 			fixed4 color = tex2D(_MainTex, IN.uv_MainTex);
-			o.Albedo = color.xyz;
+			/*o.Emission = color.rgb;*/
+			o.Albedo = _Color.rgb;
+			o.Alpha = _Color.a;
 		}
 
 

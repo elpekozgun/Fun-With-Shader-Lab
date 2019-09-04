@@ -5,61 +5,76 @@ using UnityEngine;
 public class WaterDropCollision : MonoBehaviour
 {
     private Renderer _Renderer;
-    private MaterialPropertyBlock _Block;
     private MeshFilter _MeshFilter;
-    
-    public int WaveNo;
-    public float DistanceX;
-    public float DistanceZ;
-    public float[] WaveAmplitudes;
-    [Range(1,100)]
+    private GameObject _Collider;
+
+    public float WaveAmplitude;
+    public float Distance;
+    public float WaveSpeed;
+    [Range(1, 100)]
     public float VelocityFineTune;
 
     void Start()
     {
         _Renderer = gameObject.GetComponent<Renderer>();
-        _Block = new MaterialPropertyBlock();
         _MeshFilter = this.gameObject.GetComponent<MeshFilter>();
-        _Renderer.GetPropertyBlock(_Block);
-        _Renderer.SetPropertyBlock(_Block);
-        WaveAmplitudes = new float[8];
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (collision.rigidbody != null)
+        if (collider != null)
         {
-            WaveNo++;
-            if (WaveNo == 9)
-            {
-                WaveNo = 1;
-            }
-            WaveAmplitudes[WaveNo - 1] = 0;
-            var dist = (gameObject.transform.position - collision.transform.position);
-            DistanceX = dist.x;
-            DistanceZ = dist.z;
+            _Collider = collider.gameObject;
+            Debug.Log(collider.name);
 
-            _Renderer.sharedMaterial.SetFloat("_OffsetX" + WaveNo, DistanceX / _MeshFilter.mesh.bounds.size.x);
-            _Renderer.sharedMaterial.SetFloat("_OffsetZ" + WaveNo, DistanceZ / _MeshFilter.mesh.bounds.size.z);
-            _Renderer.sharedMaterial.SetFloat("_WaveAmplitude" + WaveNo, collision.rigidbody.velocity.magnitude / VelocityFineTune);
-            Debug.Log(collision.collider.name);
+            WaveAmplitude = 0;
+            Vector2 dist = Vector2.zero;
+
+            dist.x = (gameObject.transform.position.x - collider.gameObject.transform.position.x);
+            dist.y = (gameObject.transform.position.z - collider.gameObject.transform.position.z);
+
+            _Renderer.material.SetVector
+            (
+                "_Offset",
+                new Vector4
+                (
+                    dist.x / _MeshFilter.mesh.bounds.size.x * 2.5f,
+                    dist.y / _MeshFilter.mesh.bounds.size.z * 2.5f
+                )
+            );
+
+            _Renderer.material.SetVector
+            (
+                "_Impact",
+                new Vector4
+                (
+                    collider.gameObject.transform.position.x,
+                    collider.gameObject.transform.position.z
+                )
+            );
+
+            _Renderer.material.SetFloat("_WaveAmplitude", collider.attachedRigidbody.velocity.magnitude / VelocityFineTune);
         }
     }
+
 
     void Update()
     {
-        for (int i = 1; i < 9; i++)
+        if (_Collider != null)
         {
-            WaveAmplitudes[i-1] = _Renderer.sharedMaterial.GetFloat("_WaveAmplitude" + i);
-            if (WaveAmplitudes[i-1] < 0.01f)
+            WaveAmplitude = _Renderer.material.GetFloat("_WaveAmplitude");
+            if (WaveAmplitude < 0.01f)
             {
-                _Renderer.sharedMaterial.SetFloat("_WaveAmplitude" + i, 0);
+                Distance = 0.0f;
+                _Renderer.material.SetFloat("_WaveAmplitude", 0);
             }
-            else
+            else if (WaveAmplitude > 0.0f)
             {
-                _Renderer.sharedMaterial.SetFloat("_WaveAmplitude" + i, WaveAmplitudes[i - 1] * 0.99f);
+                Distance += WaveSpeed;
+                _Renderer.material.SetFloat("_Distance", Distance);
+                _Renderer.material.SetFloat("_WaveAmplitude", WaveAmplitude * 0.98f);
             }
-        }
 
+        }
     }
 }
