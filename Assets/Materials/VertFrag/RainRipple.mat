@@ -106,8 +106,8 @@ Material:
     - _Mode: 0
     - _NormalSlider: 1
     - _OcclusionStrength: 1
-    - _OffsetX1: -0.025833288
-    - _OffsetZ1: 0.044999998
+    - _OffsetX1: 0.013333321
+    - _OffsetZ1: 0.121688604
     - _OutlineThickness: 0
     - _Parallax: 0.02
     - _Scale1: 4.17
@@ -125,10 +125,10 @@ Material:
     - _UVSec: 0
     - _WaveAmplitude1: 0
     - _WaveAmplitude2: 0
-    - _WaveAmplitude3: 0
-    - _WaveAmplitude4: 0
-    - _WaveAmplitude5: 0
-    - _WaveAmplitude6: 0
+    - _WaveAmplitude3: 0.01417172
+    - _WaveAmplitude4: 0.036666106
+    - _WaveAmplitude5: 0.09576068
+    - _WaveAmplitude6: 0.25759166
     - _WaveAmplitude7: 0
     - _WaveAmplitude8: 0
     - _ZWrite: 1

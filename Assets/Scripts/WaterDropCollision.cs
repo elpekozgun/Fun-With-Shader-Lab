@@ -42,6 +42,7 @@ public class WaterDropCollision : MonoBehaviour
             _Renderer.sharedMaterial.SetFloat("_OffsetX" + WaveNo, DistanceX / _MeshFilter.mesh.bounds.size.x);
             _Renderer.sharedMaterial.SetFloat("_OffsetZ" + WaveNo, DistanceZ / _MeshFilter.mesh.bounds.size.z);
             _Renderer.sharedMaterial.SetFloat("_WaveAmplitude" + WaveNo, collision.rigidbody.velocity.magnitude / VelocityFineTune);
+            Debug.Log(collision.collider.name);
         }
     }
 
