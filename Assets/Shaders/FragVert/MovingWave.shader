@@ -47,7 +47,7 @@
 			{
 				UNITY_INITIALIZE_OUTPUT(Input, o);
 				float t = _Time * _Speed;
-				float waveHeight = sin(t + v.vertex.x * _Freq) * _Amplitude + sin(t + v.vertex.x * 2 * _Freq) * _Amplitude;
+				float waveHeight = (sin(t + v.vertex.x * _Freq) + sin(t + v.vertex.x * 2 * _Freq)) * _Amplitude;
 				v.vertex.y += waveHeight;
 				v.normal = normalize(float3(v.normal.x + waveHeight, v.normal.y, v.normal.z));
 				o.vertColor = waveHeight + 1.5;
