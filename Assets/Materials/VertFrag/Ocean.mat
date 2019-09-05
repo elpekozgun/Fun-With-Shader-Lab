@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OutlineBorderlands
-  m_Shader: {fileID: 4800000, guid: f0646672625912742aa712bbf818e3be, type: 3}
+  m_Name: Ocean
+  m_Shader: {fileID: 4800000, guid: da548bc64a90d1a4fb79d336f467e4b2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -43,9 +43,13 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 47a8c0a124e505947bd8a7bc384af8f3, type: 3}
+    - _GradTex:
+        m_Texture: {fileID: 2800000, guid: 038f99d3947f3904187da31b09384461, type: 3}
         m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: b8cbfecd1f61fc84bad0b7e66c7ba794, type: 3}
+        m_Scale: {x: 12, y: 12}
         m_Offset: {x: 0, y: 0}
     - _MetalTex:
         m_Texture: {fileID: 2800000, guid: da4e4e7f56333644999cc2db4f95ba4c, type: 3}
@@ -64,7 +68,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
-        m_Texture: {fileID: 2800000, guid: cabd3511f91b17044bed26af69788189, type: 3}
+        m_Texture: {fileID: 2800000, guid: b5fb0712858442b46b756eb29c664b6f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -81,15 +85,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Texture:
         m_Texture: {fileID: 2800000, guid: 0479f06784de49d47a188fd3d21c6e17, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 1}
+        m_Scale: {x: 4, y: 5}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Amp: 0
+    - _Amplitude: 0.41
     - _BumpScale: 1
     - _Compare1: 8
     - _Compare2: 8
+    - _Count: 2.87
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Freq: 2.5
     - _Gloss: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 0
@@ -98,22 +106,46 @@ Material:
     - _Mode: 0
     - _NormalSlider: 1
     - _OcclusionStrength: 1
-    - _Outline: 0.005
-    - _OutlineThickness: 0.5
+    - _OffsetX1: 0.013333321
+    - _OffsetZ1: -0.008333365
+    - _OutlineThickness: 0
     - _Parallax: 0.02
-    - _SPass: 2
-    - _ScaleUVx: 1
+    - _Scale1: 4.17
+    - _Scale2: 5.32
+    - _Scale3: 1.67
+    - _Scale4: 3.43
+    - _ScaleUVx: 0.41
     - _ScaleUVy: 1
     - _Selected: 0
+    - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _Specular: 0.302
     - _SpecularHighlights: 1
+    - _Speed: 2.7
     - _SrcBlend: 1
     - _UVSec: 0
+    - _WaveAmplitude: 0
+    - _WaveAmplitude1: 0
+    - _WaveAmplitude2: 0
+    - _WaveAmplitude3: 0
+    - _WaveAmplitude4: 0
+    - _WaveAmplitude5: 0
+    - _WaveAmplitude6: 0
+    - _WaveAmplitude7: 0
+    - _WaveAmplitude8: 0
     - _ZWrite: 1
     m_Colors:
     - _AlbedoColor: {r: 0.1, g: 0.4, b: 0.7, a: 1}
-    - _Color: {r: 1, g: 0.30865982, b: 0, a: 1}
+    - _Color: {r: 0, g: 1, b: 0.9472952, a: 1}
+    - _Drop1: {r: -7.77, g: 0.5, b: 0, a: 0}
+    - _Drop2: {r: 0.29, g: 0.5, b: 0, a: 0}
+    - _Drop3: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 1, g: 0, b: 0, a: 0}
+    - _Params1: {r: 2.09, g: 2.46, b: -0.09, a: 5.18}
+    - _Params2: {r: -0.67, g: 1, b: 1, a: 0}
+    - _Reflection: {r: 1, g: 0.3752398, b: 0, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Tint: {r: 1, g: 1, b: 1, a: 1}
+    - _WorldPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _worldPosition: {r: 0, g: 0, b: 0, a: 0}

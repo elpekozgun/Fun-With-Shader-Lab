@@ -48,8 +48,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 12, y: 12}
+        m_Texture: {fileID: 2800000, guid: 00f8d5e3dd0bebe4f9112bda58bf6aba, type: 3}
+        m_Scale: {x: 6, y: 6}
         m_Offset: {x: 0, y: 0}
     - _MetalTex:
         m_Texture: {fileID: 2800000, guid: da4e4e7f56333644999cc2db4f95ba4c, type: 3}
@@ -68,8 +68,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
-        m_Texture: {fileID: 2800000, guid: b5fb0712858442b46b756eb29c664b6f, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: fc19d4018c0b28f428f0b9b6809e1c85, type: 3}
+        m_Scale: {x: 6, y: 6}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -88,7 +88,7 @@ Material:
         m_Scale: {x: 4, y: 5}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Amp: 0
+    - _Amp: 1
     - _Amplitude: 0.41
     - _BumpScale: 1
     - _Compare1: 8
@@ -97,13 +97,14 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Freq: 1
+    - _Freq: 5
     - _Gloss: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
     - _Metallic: 1
     - _Mode: 0
+    - _NormalAmp: 1.13
     - _NormalSlider: 1
     - _OcclusionStrength: 1
     - _OffsetX1: 0.013333321
@@ -117,13 +118,14 @@ Material:
     - _ScaleUVx: 0.41
     - _ScaleUVy: 1
     - _Selected: 0
+    - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _Specular: 0.302
     - _SpecularHighlights: 1
-    - _Speed: 10
+    - _Speed: 0.5
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WaveAmplitude: 0
+    - _WaveAmplitude: 0.38
     - _WaveAmplitude1: 0
     - _WaveAmplitude2: 0
     - _WaveAmplitude3: 0
@@ -135,7 +137,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _AlbedoColor: {r: 0.1, g: 0.4, b: 0.7, a: 1}
-    - _Color: {r: 0.36561054, g: 0.82292104, b: 0.9811321, a: 1}
+    - _Color: {r: 0, g: 0.62675667, b: 1, a: 1}
     - _Drop1: {r: -7.77, g: 0.5, b: 0, a: 0}
     - _Drop2: {r: 0.29, g: 0.5, b: 0, a: 0}
     - _Drop3: {r: 0.5, g: 0.5, b: 0, a: 0}

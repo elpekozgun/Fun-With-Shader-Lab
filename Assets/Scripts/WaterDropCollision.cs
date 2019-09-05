@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class WaterDropCollision : MonoBehaviour
     [Range(1, 100)]
     public float VelocityFineTune;
 
+    public static event EventHandler OnCollided;
+
     void Start()
     {
         _Renderer = gameObject.GetComponent<Renderer>();
@@ -25,7 +28,6 @@ public class WaterDropCollision : MonoBehaviour
         if (collider != null)
         {
             _Collider = collider.gameObject;
-            Debug.Log(collider.name);
 
             WaveAmplitude = 0;
             Vector2 dist = Vector2.zero;
@@ -38,8 +40,8 @@ public class WaterDropCollision : MonoBehaviour
                 "_Offset",
                 new Vector4
                 (
-                    dist.x / _MeshFilter.mesh.bounds.size.x * 2.5f,
-                    dist.y / _MeshFilter.mesh.bounds.size.z * 2.5f
+                    dist.x /*/ _MeshFilter.mesh.bounds.size.x*/,
+                    dist.y /*/ _MeshFilter.mesh.bounds.size.z*/
                 )
             );
 
@@ -54,9 +56,9 @@ public class WaterDropCollision : MonoBehaviour
             );
 
             _Renderer.material.SetFloat("_WaveAmplitude", collider.attachedRigidbody.velocity.magnitude / VelocityFineTune);
+            OnCollided(collider, new EventArgs());
         }
     }
-
 
     void Update()
     {
@@ -70,7 +72,8 @@ public class WaterDropCollision : MonoBehaviour
             }
             else if (WaveAmplitude > 0.0f)
             {
-                Distance += WaveSpeed;
+                //Distance += WaveSpeed;
+                Distance = 10;
                 _Renderer.material.SetFloat("_Distance", Distance);
                 _Renderer.material.SetFloat("_WaveAmplitude", WaveAmplitude * 0.98f);
             }
