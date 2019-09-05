@@ -89,27 +89,29 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Amp: 1
-    - _Amplitude: 0.5
+    - _Amplitude: 0
     - _BumpScale: 1
     - _Compare1: 8
     - _Compare2: 8
     - _Count: 2.87
     - _Cutoff: 0.5
+    - _Decay: 0
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Freq: 1
+    - _Freq: 5
     - _Gloss: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
     - _Metallic: 1
     - _Mode: 0
-    - _NormalAmp: 1.13
+    - _NormalAmp: 1.2
     - _NormalSlider: 1
     - _OcclusionStrength: 1
     - _OffsetX: 0
     - _OffsetX1: 0.013333321
     - _OffsetY: 0
+    - _OffsetZ: 0
     - _OffsetZ1: -0.008333365
     - _OutlineThickness: 0
     - _Parallax: 0.02
@@ -120,12 +122,13 @@ Material:
     - _ScaleUVx: 0.41
     - _ScaleUVy: 1
     - _Selected: 0
-    - _Smoothness: 0.82
+    - _Smoothness: 0.65
     - _SmoothnessTextureChannel: 0
     - _Specular: 0.302
     - _SpecularHighlights: 1
-    - _Speed: 1
+    - _Speed: 2
     - _SrcBlend: 1
+    - _TravelDistance: 0
     - _UVSec: 0
     - _WaveAmplitude: 0.38
     - _WaveAmplitude1: 0
@@ -136,7 +139,7 @@ Material:
     - _WaveAmplitude6: 0
     - _WaveAmplitude7: 0
     - _WaveAmplitude8: 0
-    - _WaveLength: 3.11
+    - _WaveLength: 3
     - _ZWrite: 1
     m_Colors:
     - _AlbedoColor: {r: 0.1, g: 0.4, b: 0.7, a: 1}

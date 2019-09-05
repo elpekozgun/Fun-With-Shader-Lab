@@ -18,18 +18,20 @@ public class SpherePositionSetter : MonoBehaviour
 
     private void Update()
     {
-        block.SetVector("_SphereCenter", new Vector4(this.transform.position.x, this.transform.position.y, this.transform.position.z, 0));
+        if (block != null)
+        {
+            block.SetVector("_SphereCenter", new Vector4(this.transform.position.x, this.transform.position.y, this.transform.position.z, 0));
 
-        //mat.material.SetVector("_SphereCenter", new Vector4(this.transform.position.x, this.transform.position.y, this.transform.position.z, 0));
+            //mat.material.SetVector("_SphereCenter", new Vector4(this.transform.position.x, this.transform.position.y, this.transform.position.z, 0));
 
-        float minScaleVal = transform.localScale.x;
-        minScaleVal = minScaleVal < transform.localScale.y ? minScaleVal : transform.localScale.y;
-        minScaleVal = minScaleVal < transform.localScale.z ? minScaleVal : transform.localScale.z;
-        
-        block.SetFloat("_SphereRadius", minScaleVal * 0.5f);
+            float minScaleVal = transform.localScale.x;
+            minScaleVal = minScaleVal < transform.localScale.y ? minScaleVal : transform.localScale.y;
+            minScaleVal = minScaleVal < transform.localScale.z ? minScaleVal : transform.localScale.z;
 
-        mat.SetPropertyBlock(block);
+            block.SetFloat("_SphereRadius", minScaleVal * 0.5f);
 
+            mat.SetPropertyBlock(block);
+        }
 
         //Debug.Log(mat.material.GetFloat("_Depth"));
     }

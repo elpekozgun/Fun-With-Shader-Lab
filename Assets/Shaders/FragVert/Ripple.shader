@@ -6,13 +6,13 @@
 		_NormalTex("Normal", 2D) = "black"{}
 		_Color("Color", Color) = (1,1,1,1)
 		_Amplitude("Amplitude", float) = 0.2
-		_WaveLength("Wave Length", float) = 0.5
 		_Freq("Frequency", float) = 0.01
 		_Speed("Speed", float) = 1
+		_TravelDistance("TravelDistance", float) = 0
 		_Smoothness("Smoothness", Range(0,1)) = 0
 		_NormalAmp("Normal Amp", Range(0,5)) = 1
-		_OffsetX("Offset X", Range(-1,1)) = 0
-		_OffsetY("Offset Y", Range(-1,1)) = 0
+		_OffsetX("Offset X", Range(-10,10)) = 0
+		_OffsetZ("Offset Z", Range(-10,10)) = 0
 	}
 
 	SubShader
@@ -30,11 +30,11 @@
 		sampler2D _NormalTex;
 		fixed4 _Color;
 		float _Amplitude;
-		float _WaveLength;
 		float _Freq;
 		float _Speed;
+		float _TravelDistance;
 		float _OffsetX;
-		float _OffsetY;
+		float _OffsetZ;
 
 		half _Smoothness;
 		half _NormalAmp;
@@ -51,11 +51,19 @@
 		{
 			UNITY_INITIALIZE_OUTPUT(Input, o);
 
-			half offsetVertical = sqrt(v.vertex.x * v.vertex.x + v.vertex.z * v.vertex.z);
-			half value = sin(_Time.w * _Speed + _Freq * offsetVertical + _OffsetX);
+			float3 p = v.vertex.xyz;
+			float px = p.x - _OffsetX;
+			float pz = p.z - _OffsetZ; 
 
-			v.vertex.y += value * _Amplitude;
-			v.normal.z -= value * _Amplitude;
+			half offsetVertical = sqrt(px * px + pz * pz);
+			
+			half value = sin((_Time.w * _Speed - _Freq * offsetVertical));
+
+			if(sqrt(px* px + pz * pz ) < _TravelDistance)
+			{
+				v.vertex.y -= value * _Amplitude ;
+				v.normal.z += value * _Amplitude ;
+			}
 
 		}
 
