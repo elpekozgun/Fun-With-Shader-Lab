@@ -5,14 +5,14 @@
 		_MainTex("Base", 2D) = "white" {}
 		_NormalTex("Normal", 2D) = "black"{}
 		_Color("Color", Color) = (1,1,1,1)
-		_Amplitude("Amplitude", float) = 0.2
 		_Freq("Frequency", float) = 0.01
 		_Speed("Speed", float) = 1
-		_TravelDistance("TravelDistance", float) = 0
 		_Smoothness("Smoothness", Range(0,1)) = 0
 		_NormalAmp("Normal Amp", Range(0,5)) = 1
-		_OffsetX("Offset X", Range(-10,10)) = 0
-		_OffsetZ("Offset Z", Range(-10,10)) = 0
+		//_Amplitude("Amplitude", float) = 0.2
+		//_TravelDistance("TravelDistance", float) = 0
+		//_OffsetX("Offset X", Range(-10,10)) = 0
+		//_OffsetZ("Offset Z", Range(-10,10)) = 0
 	}
 
 	SubShader
@@ -25,16 +25,18 @@
 		CGPROGRAM
 		#pragma surface surf Standard vertex:vert
 		#pragma target 4.0
+		
+		#define MAX_WAVE 8
 
 		sampler2D _MainTex;
 		sampler2D _NormalTex;
 		fixed4 _Color;
-		float _Amplitude;
 		float _Freq;
 		float _Speed;
-		float _TravelDistance;
-		float _OffsetX;
-		float _OffsetZ;
+		float _TravelDistance[MAX_WAVE];
+		float _Amplitude[MAX_WAVE];
+		float _OffsetX[MAX_WAVE];
+		float _OffsetZ[MAX_WAVE];
 
 		half _Smoothness;
 		half _NormalAmp;
@@ -52,19 +54,22 @@
 			UNITY_INITIALIZE_OUTPUT(Input, o);
 
 			float3 p = v.vertex.xyz;
-			float px = p.x - _OffsetX;
-			float pz = p.z - _OffsetZ; 
 
-			half offsetVertical = sqrt(px * px + pz * pz);
-			
-			half value = sin((_Time.w * _Speed - _Freq * offsetVertical));
-
-			if(sqrt(px* px + pz * pz ) < _TravelDistance)
+			for (int i = 0; i < MAX_WAVE; i++)
 			{
-				v.vertex.y -= value * _Amplitude ;
-				v.normal.z += value * _Amplitude ;
-			}
+				float px = p.x - _OffsetX[i];
+				float pz = p.z - _OffsetZ[i];
 
+				half offsetVertical = sqrt(px * px + pz * pz);
+
+				half value = cos((/*_Time.w * */_Speed + _Freq * offsetVertical));
+
+				if (sqrt(px * px + pz * pz) < _TravelDistance[i])
+				{
+					v.vertex.y -= value * _Amplitude[i];
+					v.normal.z += value * _Amplitude[i];
+				}
+			}
 		}
 
 		void surf(Input IN, inout SurfaceOutputStandard o )
@@ -78,7 +83,7 @@
 			o.Smoothness = _Smoothness;
 		}
 
-
-	ENDCG
+		ENDCG
 	}
+	Fallback "Diffuse"
 }

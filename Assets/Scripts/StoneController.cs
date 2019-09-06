@@ -2,36 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+
+
 
 public class StoneController : MonoBehaviour
 {
-
-    public GameObject stone;
+    public GameObject[] Stones;
     public Button DropButton;
     public Button ResetButton;
-    private Vector3 _InitialPosition;
+    private Vector3[] _InitialPositions;
+    private float _MaxLevel;
 
     // Start is called before the first frame update
     void Awake()
     {
-        WaterDropCollision.OnCollided += WaterDropCollision_OnCollided;
+        RippleCollision.OnCollided += WaterDropCollision_OnCollided;
+        _InitialPositions = new Vector3[Stones.Length];
 
-        Vector3 _InitialPosition = stone.transform.position;
-        DropButton.onClick.AddListener
-        (
-            () => 
-            {
-                stone.GetComponent<Rigidbody>().useGravity = true;
-                stone.transform.position = _InitialPosition;
-                DropButton.enabled = false;
-            }
-        );
+        // TODO : özgün : Fix the goddamn event;
+
+        for (int i = 0; i < Stones.Length; ++i)
+        {
+            _InitialPositions[i] = Stones[i].transform.position;
+            _MaxLevel = _InitialPositions[i].y > _MaxLevel ? _InitialPositions[i].y : _MaxLevel;
+        }
+        DropButton.onClick.AddListener(Drop);
+        ResetButton.onClick.AddListener(Reset);
+    }
+
+    private void Drop()
+    {
+        for (int i = 0; i < Stones.Length; i++)
+        {
+            Stones[i].GetComponent<Rigidbody>().useGravity = true;
+            DropButton.enabled = false;
+        }
+    }
+
+    private void Reset()
+    {
+        for (int i = 0; i < Stones.Length; i++)
+        {
+            Stones[i].GetComponent<Rigidbody>().useGravity = false;
+            Stones[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+            Stones[i].transform.position = new Vector3(_InitialPositions[i].x, _MaxLevel , _InitialPositions[i].z);
+            DropButton.enabled = true;
+        }
     }
 
     private void WaterDropCollision_OnCollided(object sender, System.EventArgs e)
     {
-        DropButton.enabled = true;
-        stone.GetComponent<Rigidbody>().useGravity = false;
-        stone.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        var stone = sender as Collider;
+
+        for (int i = 0; i < Stones.Length; ++i)
+        {
+            if (Stones[i].name == stone.gameObject.name)
+            {
+                stone.transform.position = new Vector3(_InitialPositions[i].x, _MaxLevel, _InitialPositions[i].z);
+                stone.attachedRigidbody.velocity = Vector3.zero;
+            }
+        }
+
+
     }
 }
