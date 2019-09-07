@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class RippleCollision : MonoBehaviour
 {
 
@@ -19,6 +18,7 @@ public class RippleCollision : MonoBehaviour
     private float[] _Amplitude;
     private int _MaxWaveCount = 8; // TODO : there must be a way to extract this constant from shader. till then sync it with MAX_WAVE in ripple.shader.
     private int _WaveIndex;
+
     void Start()
     {
         _Renderer = gameObject.GetComponent<Renderer>();
@@ -33,8 +33,8 @@ public class RippleCollision : MonoBehaviour
         _Renderer.material.SetFloatArray("_OffsetX", _OffsetX);
         _Renderer.material.SetFloatArray("_OffsetZ", _OffsetZ);
         _Renderer.material.SetFloatArray("_TravelDistance", _TravelDistance);
+        _Speed = _Renderer.material.GetFloat("_Speed");
     }
-
 
     private void OnTriggerEnter(Collider collider)
     {
@@ -54,44 +54,22 @@ public class RippleCollision : MonoBehaviour
             _WaveIndex++;
             OnCollided(collider, new EventArgs());
         }
+        //_Renderer.material.SetTexture("_MainTex", gameObject.GetComponent<RippleComputeManager>()._RenderTexture);
     }
 
-
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        //if (Input.GetKey(KeyCode.Mouse0))
-        //{
-        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //    Physics.Raycast(ray,out RaycastHit info);
-        //    if (info.collider != null && info.collider.gameObject.name == this.gameObject.name)
-        //    {
-        //        var points = _Renderer.transform.InverseTransformPoint(info.point);
-
-        //        _WaveIndex = _WaveIndex % _MaxWaveCount == 0 ? 0 : _WaveIndex;
-
-        //        _OffsetX[_WaveIndex] = points.x;
-        //        _OffsetZ[_WaveIndex] = points.z;
-        //        _Amplitude[_WaveIndex] = _InitialHitAmplitude;
-
-        //        _Renderer.material.SetFloatArray("_OffsetX", _OffsetX);
-        //        _Renderer.material.SetFloatArray("_OffsetZ", _OffsetZ);
-        //        _Renderer.material.SetFloatArray("_Amplitude", _Amplitude);
-        //        _WaveIndex++;
-        //    }
-        //}
-
         _Amplitude = _Renderer.material.GetFloatArray("_Amplitude");
         for (int i = 0; i < _MaxWaveCount; i++)
         {
-            if (_Amplitude[i] < 0.0005f)
+            if (_Amplitude[i] < 0.002f)
             {
                 _TravelDistance[i] = 0.0f;
                 _Amplitude[i] = 0;
             }
             else if (_Amplitude[i] > 0.0f)
             {
-                _TravelDistance[i] += 0.1f;
+                _TravelDistance[i] += (_Speed / gameObject.GetComponent<MeshFilter>().mesh.bounds.size.magnitude);
                 _Amplitude[i] *= 0.9f;
             }
         }

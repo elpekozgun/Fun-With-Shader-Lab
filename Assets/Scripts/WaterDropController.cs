@@ -6,7 +6,7 @@ using System.Linq;
 
 
 
-public class StoneController : MonoBehaviour
+public class WaterDropController : MonoBehaviour
 {
     public GameObject[] Stones;
     public Button DropButton;
@@ -30,6 +30,7 @@ public class StoneController : MonoBehaviour
         DropButton.onClick.AddListener(Drop);
         ResetButton.onClick.AddListener(Reset);
     }
+
 
     private void Drop()
     {

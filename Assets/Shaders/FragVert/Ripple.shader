@@ -9,10 +9,6 @@
 		_Speed("Speed", float) = 1
 		_Smoothness("Smoothness", Range(0,1)) = 0
 		_NormalAmp("Normal Amp", Range(0,5)) = 1
-		//_Amplitude("Amplitude", float) = 0.2
-		//_TravelDistance("TravelDistance", float) = 0
-		//_OffsetX("Offset X", Range(-10,10)) = 0
-		//_OffsetZ("Offset Z", Range(-10,10)) = 0
 	}
 
 	SubShader
