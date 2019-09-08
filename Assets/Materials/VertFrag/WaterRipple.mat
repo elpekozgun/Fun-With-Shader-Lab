@@ -90,6 +90,7 @@ Material:
     m_Floats:
     - _Amp: 1
     - _Amplitude: 0
+    - _AmplitudeAmplifier: 3
     - _BumpScale: 1
     - _Compare1: 8
     - _Compare2: 8
@@ -98,7 +99,7 @@ Material:
     - _Decay: 0
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Freq: 5
+    - _Freq: 5.28
     - _Gloss: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 0
@@ -122,11 +123,11 @@ Material:
     - _ScaleUVx: 0.41
     - _ScaleUVy: 1
     - _Selected: 0
-    - _Smoothness: 0.65
+    - _Smoothness: 0.721
     - _SmoothnessTextureChannel: 0
     - _Specular: 0.302
     - _SpecularHighlights: 1
-    - _Speed: 2
+    - _Speed: 1
     - _SrcBlend: 1
     - _TravelDistance: 0
     - _UVSec: 0

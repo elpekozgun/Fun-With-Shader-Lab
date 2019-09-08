@@ -46,7 +46,7 @@ public class RippleCollision : MonoBehaviour
 
             _OffsetX[_WaveIndex] = points.x;
             _OffsetZ[_WaveIndex] = points.z;
-            _Amplitude[_WaveIndex] = collider.attachedRigidbody.velocity.magnitude * collider.attachedRigidbody.mass;
+            _Amplitude[_WaveIndex] = collider.attachedRigidbody.velocity.magnitude * collider.attachedRigidbody.mass /  gameObject.GetComponent<MeshFilter>().mesh.bounds.size.magnitude;
 
             _Renderer.material.SetFloatArray("_OffsetX", _OffsetX);
             _Renderer.material.SetFloatArray("_OffsetZ", _OffsetZ);

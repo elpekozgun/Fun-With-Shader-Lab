@@ -7,8 +7,10 @@
 		_Color("Color", Color) = (1,1,1,1)
 		_Freq("Frequency", float) = 0.01
 		_Speed("Speed", float) = 1
+		_AmplitudeAmplifier("Amplitude Amp", float) = 1
 		_Smoothness("Smoothness", Range(0,1)) = 0
 		_NormalAmp("Normal Amp", Range(0,5)) = 1
+		
 	}
 
 	SubShader
@@ -29,6 +31,7 @@
 		fixed4 _Color;
 		float _Freq;
 		float _Speed;
+		float _AmplitudeAmplifier;
 		float _TravelDistance[MAX_WAVE];
 		float _Amplitude[MAX_WAVE];
 		float _OffsetX[MAX_WAVE];
@@ -58,12 +61,12 @@
 
 				half offsetVertical = sqrt(px * px + pz * pz);
 
-				half value = cos((/*_Time.w * */_Speed + _Freq * offsetVertical));
+				half value = cos((_Speed + _Freq * offsetVertical));
 
 				if (sqrt(px * px + pz * pz) < _TravelDistance[i])
 				{
-					v.vertex.y -= value * _Amplitude[i];
-					v.normal.z += value * _Amplitude[i];
+					v.vertex.y -= value * _Amplitude[i] * _AmplitudeAmplifier;
+					v.normal.z += value * _Amplitude[i] * _AmplitudeAmplifier;
 				}
 			}
 		}
