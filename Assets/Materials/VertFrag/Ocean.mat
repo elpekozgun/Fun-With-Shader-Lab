@@ -102,7 +102,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
-    - _Metallic: 1
+    - _Metallic: 0.128
     - _Mode: 0
     - _NormalAmp: 1
     - _NormalSlider: 1
@@ -118,7 +118,7 @@ Material:
     - _ScaleUVx: 0.41
     - _ScaleUVy: 1
     - _Selected: 0
-    - _Smoothness: 0.5
+    - _Smoothness: 0.402
     - _SmoothnessTextureChannel: 0
     - _Specular: 0.302
     - _SpecularHighlights: 1

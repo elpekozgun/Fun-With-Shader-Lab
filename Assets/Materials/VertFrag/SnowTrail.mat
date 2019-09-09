@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WaterRipple
+  m_Name: SnowTrail
   m_Shader: {fileID: 4800000, guid: 73ba9273cc9e8b247b853ee5b04fbcc4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -39,10 +39,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _DispTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -53,7 +49,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 00f8d5e3dd0bebe4f9112bda58bf6aba, type: 3}
-        m_Scale: {x: 96, y: 96}
+        m_Scale: {x: 24, y: 24}
         m_Offset: {x: 0, y: 0}
     - _MetalTex:
         m_Texture: {fileID: 2800000, guid: da4e4e7f56333644999cc2db4f95ba4c, type: 3}
@@ -73,7 +69,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
         m_Texture: {fileID: 2800000, guid: fc19d4018c0b28f428f0b9b6809e1c85, type: 3}
-        m_Scale: {x: 96, y: 96}
+        m_Scale: {x: 24, y: 24}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -92,9 +88,9 @@ Material:
         m_Scale: {x: 4, y: 5}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Amp: 0
+    - _Amp: 1
     - _Amplitude: 0
-    - _AmplitudeAmplifier: 5
+    - _AmplitudeAmplifier: 2
     - _BumpScale: 1
     - _Compare1: 8
     - _Compare2: 8
@@ -102,7 +98,6 @@ Material:
     - _Cutoff: 0.5
     - _Decay: 0
     - _DetailNormalMapScale: 1
-    - _Displacement: 1
     - _DstBlend: 0
     - _Freq: 5.28
     - _Gloss: 0.5
@@ -111,7 +106,7 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 1
     - _Mode: 0
-    - _NormalAmp: 1.18
+    - _NormalAmp: 1.17
     - _NormalSlider: 1
     - _OcclusionStrength: 1
     - _OffsetX: 0
@@ -121,7 +116,6 @@ Material:
     - _OffsetZ1: -0.008333365
     - _OutlineThickness: 0
     - _Parallax: 0.02
-    - _Phong: 0.5
     - _Scale1: 4.17
     - _Scale2: 5.32
     - _Scale3: 1.67
@@ -129,15 +123,14 @@ Material:
     - _ScaleUVx: 0.41
     - _ScaleUVy: 1
     - _Selected: 0
-    - _Smoothness: 0.489
+    - _Smoothness: 0.713
     - _SmoothnessTextureChannel: 0
     - _Specular: 0.302
     - _SpecularHighlights: 1
     - _Speed: 1
     - _SrcBlend: 1
-    - _Tess: 4
     - _TravelDistance: 0
-    - _TravelDistanceOffset: 0.2
+    - _TravelDistanceOffset: 0.4
     - _UVSec: 0
     - _WaveAmplitude: 0.38
     - _WaveAmplitude1: 0

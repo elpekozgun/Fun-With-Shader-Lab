@@ -8,7 +8,7 @@ using System.Linq;
 
 public class WaterDropController : MonoBehaviour
 {
-    public GameObject[] Stones;
+    public Drop[] Drops;
     public Button DropButton;
     public Button ResetButton;
     private Vector3[] _InitialPositions;
@@ -17,14 +17,16 @@ public class WaterDropController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        RippleCollision.OnCollided += WaterDropCollision_OnCollided;
-        _InitialPositions = new Vector3[Stones.Length];
+        Drops = GameObject.FindObjectsOfType<Drop>();
 
+        RippleCollision.OnCollided += WaterDropCollision_OnCollided;
+        _InitialPositions = new Vector3[Drops.Length];
+        
         // TODO : özgün : Fix the goddamn event;
 
-        for (int i = 0; i < Stones.Length; ++i)
+        for (int i = 0; i < Drops.Length; ++i)
         {
-            _InitialPositions[i] = Stones[i].transform.position;
+            _InitialPositions[i] = Drops[i].transform.position;
             _MaxLevel = _InitialPositions[i].y > _MaxLevel ? _InitialPositions[i].y : _MaxLevel;
         }
         DropButton.onClick.AddListener(Drop);
@@ -34,20 +36,20 @@ public class WaterDropController : MonoBehaviour
 
     private void Drop()
     {
-        for (int i = 0; i < Stones.Length; i++)
+        for (int i = 0; i < Drops.Length; i++)
         {
-            Stones[i].GetComponent<Rigidbody>().useGravity = true;
+            Drops[i].GetComponent<Rigidbody>().useGravity = true;
             DropButton.enabled = false;
         }
     }
 
     private void Reset()
     {
-        for (int i = 0; i < Stones.Length; i++)
+        for (int i = 0; i < Drops.Length; i++)
         {
-            Stones[i].GetComponent<Rigidbody>().useGravity = false;
-            Stones[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
-            Stones[i].transform.position = new Vector3(_InitialPositions[i].x, _MaxLevel , _InitialPositions[i].z);
+            Drops[i].GetComponent<Rigidbody>().useGravity = false;
+            Drops[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+            Drops[i].transform.position = new Vector3(_InitialPositions[i].x, _MaxLevel , _InitialPositions[i].z);
             DropButton.enabled = true;
         }
     }
@@ -56,15 +58,15 @@ public class WaterDropController : MonoBehaviour
     {
         var stone = sender as Collider;
 
-        for (int i = 0; i < Stones.Length; ++i)
+        for (int i = 0; i < Drops.Length; ++i)
         {
-            if (Stones[i].name == stone.gameObject.name)
+            if (Drops[i].name == stone.gameObject.name)
             {
-                stone.transform.position = new Vector3(_InitialPositions[i].x, _MaxLevel, _InitialPositions[i].z);
+                float randomX = Random.Range(-1f, 1f);
+                float randomY = Random.Range(-1f, 1f);
+                stone.transform.position = new Vector3(_InitialPositions[i].x + randomX, _MaxLevel, _InitialPositions[i].z + randomY);
                 stone.attachedRigidbody.velocity = Vector3.zero;
             }
         }
-
-
     }
 }
