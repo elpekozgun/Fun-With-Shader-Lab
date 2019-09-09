@@ -1,4 +1,4 @@
-﻿Shader "Ozgun/VertFrag/SnowTrail"
+﻿Shader "Ozgun/VertFrag/SnowTrail2"
 {
 	Properties
 	{
