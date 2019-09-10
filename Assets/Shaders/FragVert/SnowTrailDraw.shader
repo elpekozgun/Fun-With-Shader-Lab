@@ -5,6 +5,8 @@
         _MainTex ("Texture", 2D) = "white" {}
 		_Coordinate("Coordinate", Vector) = (0,0,0,0)
 		_Color("Color", Color) = (1,0,0,0)
+		_Size("Size", Range(0,2)) = 0.5
+		_Strength("Strength",Range(0,1)) = 1
     }
     SubShader
     {
@@ -24,6 +26,8 @@
 			float4 _MainTex_ST;
 			fixed4 _Coordinate;
 			fixed4 _Color;
+			float _Size;
+			float _Strength;
 
 
             struct appdata
@@ -49,9 +53,9 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
-				float d =  pow(saturate(1 - distance(i.uv, _Coordinate.xy)), 50);
+				float d =  pow(saturate(1 - distance(i.uv, _Coordinate.xy)), 100 / _Size);
 
-				fixed4 drawColor = _Color * (d * 1);
+				fixed4 drawColor = _Color * (d * _Strength);
 				return saturate(col + drawColor);
                 
             }

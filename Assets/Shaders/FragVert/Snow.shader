@@ -8,6 +8,8 @@
 		_GroundColor("Ground Color", color) = (1,1,1,0)
 
 		_NormalMap("Normalmap", 2D) = "normal" {}
+		_GroundNormal("Ground Normal", 2D) = "normal"{}
+		_HeightMap("Height Map", 2D) = "height"{}
 		_TrailMap("Trail Map", 2D) = "black" {}
 		
 		_Tess("Tessellation", Range(1,32)) = 4
@@ -15,6 +17,7 @@
 		_SpecColor("Spec color", color) = (0.5,0.5,0.5,0.5)
 		_Gloss("Gloss", Range(0,1)) = 0.5
 		_Specular("Specular", Range(0,1)) = 0.5
+		_NormalAMP("normal Amp", Range(0,5)) = 1
 	}
 		SubShader
 		{
@@ -32,6 +35,7 @@
 				float4 tangent : TANGENT;
 				float3 normal : NORMAL;
 				float2 texcoord : TEXCOORD0;
+				float3 trailnormal : TEXCOORD1;
 			};
 
 			sampler2D _SnowTex;
@@ -41,18 +45,23 @@
 			
 			sampler2D _NormalMap;
 			sampler2D _TrailMap;
+			sampler2D _HeightMap;
+			sampler2D _GroundNormal;
+
 			
 			float _Displacement;
 			float _Tess;
 
 			half _Specular;
 			half _Gloss;
+			half _NormalAMP;
 
 			struct Input
 			{
 				float2 uv_SnowTex;
 				float2 uv_GroundTex;
 				float2 uv_TrailMap;
+				float2 uv_HeightMap;
 			};
 
 			float4 Tess(appdata v0, appdata v1, appdata v2)
@@ -64,9 +73,8 @@
 
 			void vert(inout appdata v)
 			{
-				float d = tex2Dlod(_TrailMap, float4(v.texcoord.xy,0,0)).r * _Displacement;
-				v.vertex.xyz -= v.normal * d;
-				v.vertex.xyz += v.normal * _Displacement;
+				float d = tex2Dlod(_TrailMap, float4(v.texcoord.xy,0,0)).r;
+				v.vertex.xyz += v.normal * (1 - d) * _Displacement;
 			}
 			
 			void surf(Input IN, inout SurfaceOutput o) 
@@ -74,13 +82,23 @@
 				half4 snowColor = tex2D(_SnowTex, IN.uv_SnowTex) * _SnowColor;
 				half4 groundColor = tex2D(_GroundTex, IN.uv_GroundTex);
 				float lerpVal = tex2Dlod(_TrailMap, float4(IN.uv_TrailMap, 0, 0)).r;
+				//lerpVal -= tex2D(_HeightMap, IN.uv_HeightMap).r;
 
 				half4 c = lerp(snowColor, groundColor, lerpVal);
+				float3 normalSnow = UnpackNormal(tex2D(_NormalMap, IN.uv_SnowTex));
+				float3 normalGround = UnpackNormal(tex2D(_GroundNormal, IN.uv_GroundTex));
+
+				float3 n = lerp(normalSnow, normalGround, lerpVal);
 				
+
 				o.Albedo = c.rgb;
 				o.Specular = _Specular;
 				o.Gloss = _Gloss;
-				o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_SnowTex));
+
+				n *= float3(_NormalAMP, _NormalAMP, 1);
+
+				//o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_SnowTex));
+				o.Normal = n;
 			}
 			ENDCG
 		}

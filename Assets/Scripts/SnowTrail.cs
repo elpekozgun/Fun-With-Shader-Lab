@@ -22,31 +22,12 @@ public class SnowTrail : MonoBehaviour
 
     }
 
-    //private void OnTriggerEnter(Collider collider)
-    //{
-    //    if (collider != null)
-    //    {
-    //        var points = _Renderer.transform.InverseTransformPoint(collider.gameObject.transform.position);
 
-    //        _WaveIndex = _WaveIndex % _MaxWaveCount == 0 ? 0 : _WaveIndex;
+    private void OnTriggerEnter(Collider col)
+    {
+        
+    }
 
-    //        _Amplitude[_WaveIndex] = collider.attachedRigidbody.velocity.magnitude * collider.attachedRigidbody.mass / ((gameObject.GetComponent<MeshFilter>().mesh.bounds.size.magnitude /** _MeshScale*/));
-    //        _OffsetX[_WaveIndex] = points.x;
-    //        _OffsetZ[_WaveIndex] = points.z;
-    //        _T0[_WaveIndex] = UnityEngine.Time.timeSinceLevelLoad;
-
-    //        _Renderer.material.SetFloatArray("_OffsetX", _OffsetX);
-    //        _Renderer.material.SetFloatArray("_OffsetZ", _OffsetZ);
-    //        _Renderer.material.SetFloatArray("_Amplitude", _Amplitude);
-    //        _Renderer.material.SetFloatArray("_T0", _T0);
-
-    //        _WaveIndex++;
-    //        OnCollided(collider, new EventArgs());
-    //    }
-    //    //_Renderer.material.SetTexture("_MainTex", gameObject.GetComponent<RippleComputeManager>()._RenderTexture);
-    //}
-
-    // MUST BE IN SHADER
     void Update()
     {
         int i = 0;
