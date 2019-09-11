@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DispTex:
-        m_Texture: {fileID: 2800000, guid: 431c045110d1b9b49a449564ebaae4a9, type: 3}
+        m_Texture: {fileID: 8400000, guid: 12e1f519f8b0bc14b970d40a2be286a5, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GroundTex:
-        m_Texture: {fileID: 2800000, guid: 1f27a16ed04f7e0499cca9e2d233da4c, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HeightMap:
@@ -100,7 +100,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SnowTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1f27a16ed04f7e0499cca9e2d233da4c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularTex:
@@ -130,7 +130,7 @@ Material:
     - _Cutoff: 0.5
     - _Decay: 0
     - _DetailNormalMapScale: 1
-    - _Displacement: 0.615
+    - _Displacement: 0.832
     - _DstBlend: 0
     - _Freq: 5.28
     - _Gloss: 0.118
@@ -150,6 +150,7 @@ Material:
     - _OffsetZ1: -0.008333365
     - _OutlineThickness: 0
     - _Parallax: 0.02
+    - _Param: 6.8
     - _Phong: 0.5
     - _Scale1: 4.17
     - _Scale2: 5.32
@@ -160,12 +161,13 @@ Material:
     - _Selected: 0
     - _Smoothness: 0.56
     - _SmoothnessTextureChannel: 0
+    - _SnowGroundMixLevel: 7.43
     - _SnowTrail: 1
     - _Specular: 0.083
     - _SpecularHighlights: 1
     - _Speed: 1
     - _SrcBlend: 1
-    - _Tess: 8.82
+    - _Tess: 8.92
     - _TrailValue: -0.005
     - _TravelDistance: 0
     - _TravelDistanceOffset: 0.2
@@ -188,7 +190,7 @@ Material:
     - _Drop2: {r: 0.29, g: 0.5, b: 0, a: 0}
     - _Drop3: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _GroundColor: {r: 0.3584906, g: 0.28403857, b: 0.24519403, a: 1}
+    - _GroundColor: {r: 0.3584906, g: 0.28403857, b: 0.24519403, a: 0}
     - _OutlineColor: {r: 1, g: 0, b: 0, a: 0}
     - _Params1: {r: 2.09, g: 2.46, b: -0.09, a: 5.18}
     - _Params2: {r: -0.67, g: 1, b: 1, a: 0}

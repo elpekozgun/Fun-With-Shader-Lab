@@ -5,12 +5,14 @@ using UnityEngine;
 public class DrawSnowTrack : MonoBehaviour
 {
     public Shader SnowTrailDrawShader;
+    public Texture BrushTexture;
+    public Transform Transform;
 
     private RenderTexture _TrailMap;
     private Material _SnowMaterial;
     private Material _TrailMaterial;
-    public Transform _Transform;
     private int _LayerMask;
+    public Camera _TrailRenderCamera;
 
     [Range(0,100)]
     public float BrushSize;
@@ -31,27 +33,30 @@ public class DrawSnowTrack : MonoBehaviour
         {
             useMipMap = true
         };
+        _TrailMaterial.SetTexture("_BrushTexture", BrushTexture);
 
         _SnowMaterial.SetTexture("_TrailMap", _TrailMap);
         Graphics.Blit(_SnowMaterial.GetTexture("_HeightMap"), _TrailMap);
+
+        //_TrailRenderCamera.targetTexture = _TrailMap;
     }
-   
 
-    private void Update()
-    {
-        if (Physics.Raycast(_Transform.position, Vector3.down, out RaycastHit info, transform.localScale.x * 0.5f, _LayerMask))
-        {
-            _TrailMaterial.SetVector("_Coordinate", new Vector4(info.textureCoord.x, info.textureCoord.y, 0, 0));
 
-            RenderTexture temp = RenderTexture.GetTemporary(_TrailMap.width, _TrailMap.height, 0, RenderTextureFormat.ARGBFloat);
-            Graphics.Blit(_TrailMap, temp);
-            Graphics.Blit(temp, _TrailMap, _TrailMaterial);
-            RenderTexture.ReleaseTemporary(temp);
+    //private void Update()
+    //{
+    //    if (Physics.Raycast(Transform.position, Vector3.down, out RaycastHit info, transform.localScale.x * 0.5f, _LayerMask))
+    //    {
+    //        _TrailMaterial.SetVector("_Coordinate", new Vector4(info.textureCoord.x, info.textureCoord.y, 0, 0));
 
-            _TrailMaterial.SetFloat("_Size", BrushSize);
-            _TrailMaterial.SetFloat("_Strength", BrushStrength);
-        }
-    }
+    //        RenderTexture temp = RenderTexture.GetTemporary(_TrailMap.width, _TrailMap.height, 0, RenderTextureFormat.ARGBFloat);
+    //        Graphics.Blit(_TrailMap, temp);
+    //        Graphics.Blit(temp, _TrailMap, _TrailMaterial);
+    //        RenderTexture.ReleaseTemporary(temp);
+
+    //        _TrailMaterial.SetFloat("_Size", BrushSize);
+    //        _TrailMaterial.SetFloat("_Strength", BrushStrength);
+    //    }
+    //}
 
     private void OnGUI()
     {

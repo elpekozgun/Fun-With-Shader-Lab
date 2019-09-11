@@ -3,6 +3,7 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+		_BrushTex ("Brush", 2D) = "white"{}
 		_Coordinate("Coordinate", Vector) = (0,0,0,0)
 		_Color("Color", Color) = (1,0,0,0)
 		_Size("Size", Range(0,100)) = 0.25
@@ -12,6 +13,9 @@
     {
         Tags { "RenderType"="Opaque" }
         LOD 100
+		Cull off
+		ZWrite Off
+		ZTest Always
 
         Pass
         {
@@ -21,14 +25,16 @@
 
             #include "UnityCG.cginc"
 
-
 			sampler2D _MainTex;
+			sampler2D _BrushTex;
 			float4 _MainTex_ST;
 			fixed4 _Coordinate;
 			fixed4 _Color;
 			float _Size;
 			float _Strength;
 
+			float4 _Brush_TexelSize;
+			float4 _MainTex_TexelSize;
 
             struct appdata
             {
@@ -53,9 +59,18 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
-				float d =  pow(saturate(1 - distance(i.uv, _Coordinate.xy)), 100 / _Size);
+				/*fixed scale = (_Size * _Brush_TexelSize.z * _MainTex_TexelSize.x);
 
-				fixed4 drawColor = _Color * (d * _Strength);
+				fixed2 pos = i.uv - (_Coordinate.xy - 0.5 * scale);
+
+				if (pos.x > 0 && pos.x < 1 && pos.y > 0 && pos.y < 1)
+					_Color = tex2D(_BrushTex, pos);
+				*/
+				//return lerp(col, float4(maskCol.rgb, 1.0), maskCol.a);
+				float d = pow(saturate(1 - distance(i.uv, _Coordinate.xy)), 100 / _Size);
+				
+				
+				fixed4 drawColor = _Color * (d* _Strength);
 				return saturate(col + drawColor);
             }
             ENDCG
