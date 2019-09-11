@@ -5,8 +5,8 @@
         _MainTex ("Texture", 2D) = "white" {}
 		_Coordinate("Coordinate", Vector) = (0,0,0,0)
 		_Color("Color", Color) = (1,0,0,0)
-		_Size("Size", Range(0,2)) = 0.5
-		_Strength("Strength",Range(0,1)) = 1
+		_Size("Size", Range(0,100)) = 0.25
+		_Strength("Strength",Range(0,10)) = 10
     }
     SubShader
     {
@@ -57,7 +57,6 @@
 
 				fixed4 drawColor = _Color * (d * _Strength);
 				return saturate(col + drawColor);
-                
             }
             ENDCG
         }

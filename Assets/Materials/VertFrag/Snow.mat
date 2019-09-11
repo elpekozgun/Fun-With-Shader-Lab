@@ -52,11 +52,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GroundNormal:
-        m_Texture: {fileID: 2800000, guid: 19ea68a259b5a4815ad8cfe8d1bce1a7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 310d1ec2ed5c49b4abeeb1835a5d28c2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GroundTex:
-        m_Texture: {fileID: 2800000, guid: c489e5685a081428e9e4c1ffaf365764, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1f27a16ed04f7e0499cca9e2d233da4c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HeightMap:
@@ -84,7 +84,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 310d1ec2ed5c49b4abeeb1835a5d28c2, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
@@ -100,8 +100,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SnowTex:
-        m_Texture: {fileID: 2800000, guid: 1f27a16ed04f7e0499cca9e2d233da4c, type: 3}
-        m_Scale: {x: 4, y: 4}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularTex:
         m_Texture: {fileID: 0}
@@ -112,7 +112,7 @@ Material:
         m_Scale: {x: 4, y: 5}
         m_Offset: {x: 0, y: 0}
     - _TrailMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 690a12b77a6c8684fa83eba813b1d433, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TrailTex:
@@ -130,16 +130,16 @@ Material:
     - _Cutoff: 0.5
     - _Decay: 0
     - _DetailNormalMapScale: 1
-    - _Displacement: 1
+    - _Displacement: 0.615
     - _DstBlend: 0
     - _Freq: 5.28
-    - _Gloss: 0.178
+    - _Gloss: 0.118
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
     - _Metallic: 1
     - _Mode: 0
-    - _NormalAMP: 1.54
+    - _NormalAMP: 0.53
     - _NormalAmp: 1.86
     - _NormalSlider: 1
     - _OcclusionStrength: 1
@@ -161,11 +161,11 @@ Material:
     - _Smoothness: 0.56
     - _SmoothnessTextureChannel: 0
     - _SnowTrail: 1
-    - _Specular: 0.108
+    - _Specular: 0.083
     - _SpecularHighlights: 1
     - _Speed: 1
     - _SrcBlend: 1
-    - _Tess: 9
+    - _Tess: 8.82
     - _TrailValue: -0.005
     - _TravelDistance: 0
     - _TravelDistanceOffset: 0.2
@@ -188,7 +188,7 @@ Material:
     - _Drop2: {r: 0.29, g: 0.5, b: 0, a: 0}
     - _Drop3: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _GroundColor: {r: 1, g: 1, b: 1, a: 0}
+    - _GroundColor: {r: 0.3584906, g: 0.28403857, b: 0.24519403, a: 1}
     - _OutlineColor: {r: 1, g: 0, b: 0, a: 0}
     - _Params1: {r: 2.09, g: 2.46, b: -0.09, a: 5.18}
     - _Params2: {r: -0.67, g: 1, b: 1, a: 0}

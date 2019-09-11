@@ -66,8 +66,8 @@
 
 			float4 Tess(appdata v0, appdata v1, appdata v2)
 			{
-				float minDist = 20.0;
-				float maxDist = 40.0;
+				float minDist = 5.0;
+				float maxDist = 20.0;
 				return UnityDistanceBasedTess(v0.vertex, v1.vertex, v2.vertex, minDist, maxDist, _Tess);
 			}
 
@@ -80,25 +80,21 @@
 			void surf(Input IN, inout SurfaceOutput o) 
 			{
 				half4 snowColor = tex2D(_SnowTex, IN.uv_SnowTex) * _SnowColor;
-				half4 groundColor = tex2D(_GroundTex, IN.uv_GroundTex);
+				half4 groundColor = tex2D(_GroundTex, IN.uv_GroundTex) * _GroundColor;
 				float lerpVal = tex2Dlod(_TrailMap, float4(IN.uv_TrailMap, 0, 0)).r;
-				//lerpVal -= tex2D(_HeightMap, IN.uv_HeightMap).r;
-
 				half4 c = lerp(snowColor, groundColor, lerpVal);
+
+
 				float3 normalSnow = UnpackNormal(tex2D(_NormalMap, IN.uv_SnowTex));
 				float3 normalGround = UnpackNormal(tex2D(_GroundNormal, IN.uv_GroundTex));
-
 				float3 n = lerp(normalSnow, normalGround, lerpVal);
-				
+				n *= float3(_NormalAMP, _NormalAMP, 1);
+				o.Normal = n;
 
 				o.Albedo = c.rgb;
 				o.Specular = _Specular;
 				o.Gloss = _Gloss;
-
-				n *= float3(_NormalAMP, _NormalAMP, 1);
-
 				//o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_SnowTex));
-				o.Normal = n;
 			}
 			ENDCG
 		}
